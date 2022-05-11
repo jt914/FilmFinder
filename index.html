@@ -11,7 +11,7 @@
 // const getLocation = () => {
 // return(navigator.geolocation.getCurrentPosition(showPosition));
 
-// }
+// } 
 
 
 var UserCoords = { lat: '', long: '' };
@@ -24,6 +24,58 @@ function getLocation() {
     }
 }
 
+function processInfo(data,latLong){
+      console.log(data);
+      document.getElementById("locations").innerHTML = "";
+      let destinationInfo;
+
+  
+      let list = document.getElementById("locations");
+  
+      data.forEach((item) => {
+        
+        let ul = document.createElement("ul");
+        ul.innerText = item.name;
+        list.appendChild(ul);
+      }
+      );
+
+      let listElements = Array.from(document.querySelectorAll('ul ul'));
+      for(let i = 0; i < listElements.length; i++){
+        try {
+          let headers = new Headers();
+          headers.append("origin", null);
+          console.log(data[i].geometry.location.lat);
+          console.log(data[i].geometry.location.lng);
+          fetch(`https://stormy-earth-41391.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${data[i].geometry.location.lat}, ${data[i].geometry.location.lng}&origins=${latLong.lat},${latLong.long}&units=imperial&key=AIzaSyCDrxi1blX3JmChSsup4Z8bSd62On_FcFE`,{
+              method: 'GET',
+              headers: headers
+          })
+      .then(response => response.json())
+      .then(data => {destinationInfo = data;         
+        console.log(destinationInfo);
+        })
+        } catch (e) {
+          console.log(e);
+        }; 
+      
+
+
+        let openStatus = document.createElement("li");
+        let address = document.createElement("li");
+        let priceLevel = document.createElement("li");
+
+
+
+
+
+
+      }
+  
+    
+
+}
+
 function showPosition(position) {
     UserCoords.lat = position.coords.latitude;
     UserCoords.long = position.coords.longitude;
@@ -31,11 +83,6 @@ function showPosition(position) {
 }
 
 function getUserCoords(radius) {
-  async function f() {
-   let value = await somePromise;
-   // put code here to execute after the promise
-   console.log(value);
-}
 
     var promise1 = new Promise(function(resolve, reject) {
        navigator.geolocation.getCurrentPosition(function(pos){
@@ -56,7 +103,7 @@ function getUserCoords(radius) {
               headers: headers
           })
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(data => processInfo(data.results, {lat,long}))
         } catch (e) {
           console.log(e);
         };
@@ -143,11 +190,14 @@ window.initMap = initMap;
 
 
   
-<button id= "abcd" onclick= "getUserCoords(document.getElementById('radius').value)">Start the service. You will need to enable location services.</button>
+<button id= "start" onclick= "getUserCoords(document.getElementById('radius').value)">Start the service. You will need to enable location services.</button>
 
 <label for="radius">Radius for search(100-50000):</label>
 
 <input id = "radius" max= 50000 type="number" min="100"> 
+
+<ul id = "locations"></ul>
+
 
 
 <p id= "wasd"></p>
