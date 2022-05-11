@@ -1,0 +1,159 @@
+<!DOCTYPE = html>
+<html>
+
+
+<script>
+
+// let lat;
+// let long;
+
+
+// const getLocation = () => {
+// return(navigator.geolocation.getCurrentPosition(showPosition));
+
+// }
+
+
+var UserCoords = { lat: '', long: '' };
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+function showPosition(position) {
+    UserCoords.lat = position.coords.latitude;
+    UserCoords.long = position.coords.longitude;
+    console.log(UserCoords);//Works
+}
+
+function getUserCoords(radius) {
+  async function f() {
+   let value = await somePromise;
+   // put code here to execute after the promise
+   console.log(value);
+}
+
+    var promise1 = new Promise(function(resolve, reject) {
+       navigator.geolocation.getCurrentPosition(function(pos){
+          lat = pos.coords.latitude
+          long = pos.coords.longitude
+          resolve({lat,long});
+        }) 
+    })
+
+    promise1.then(function(value) {
+      let headers = new Headers();
+      headers.append('Access-Control-Allow-Origin', "<Origin>");
+      headers.append('mode', "no-cors");
+
+      try {
+          fetch(`https://stormy-earth-41391.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${value.lat},${value.long}&radius=${radius}&types=movie_theater&name=movie&key=AIzaSyCDrxi1blX3JmChSsup4Z8bSd62On_FcFE`,{
+              method: 'GET',
+              headers: headers
+          })
+      .then(response => response.json())
+      .then(data => console.log(data))
+        } catch (e) {
+          console.log(e);
+        };
+
+    });
+    
+
+    // getLocation();
+    // console.log(UserCoords);//Returns lat and lng empty
+    // // OtherFunction(UserCoords.lat, UserCoords.lng);
+}
+
+
+// function setLocation(position){
+//   lat = position.coords.latitude;
+//   long = position.coords.longitude;
+// }
+
+// function showPosition(position){
+//   setLocation(position);
+// console.log(`Lat ${position.coords.latitude} Long: ${position.coords.longitude}`);
+// document.getElementById("wasd").innerHTML = "Lat " + position.coords.latitude+ " Long:" +position.coords.longitude;
+
+// }
+
+
+
+</script>
+<!-- 
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDrxi1blX3JmChSsup4Z8bSd62On_FcFE&libraries=places&callback=initMap">
+let map;
+let service;
+let infowindow;
+
+function initMap() {
+  const sydney = new google.maps.LatLng(-33.867, 151.195);
+
+  infowindow = new google.maps.InfoWindow();
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: sydney,
+    zoom: 15,
+  });
+
+  const request = {
+    query: "Museum of Contemporary Art Australia",
+    fields: ["name", "geometry"],
+  };
+
+  service = new google.maps.places.PlacesService(map);
+  service.findPlaceFromQuery(request, (results, status) => {
+    if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+      for (let i = 0; i < results.length; i++) {
+        createMarker(results[i]);
+      }
+
+      map.setCenter(results[0].geometry.location);
+    }
+  });
+}
+
+function createMarker(place) {
+  if (!place.geometry || !place.geometry.location) return;
+
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+  });
+
+  google.maps.event.addListener(marker, "click", () => {
+    infowindow.setContent(place.name || "");
+    infowindow.open(map);
+  });
+}
+
+window.initMap = initMap;
+
+</script> -->
+
+
+<body>
+  
+
+
+
+  
+<button id= "abcd" onclick= "getUserCoords(document.getElementById('radius').value)">Start the service. You will need to enable location services.</button>
+
+<label for="radius">Radius for search(100-50000):</label>
+
+<input id = "radius" max= 50000 type="number" min="100"> 
+
+
+<p id= "wasd"></p>
+<div id="googleMap" style="width:100%;height:400px"></div>
+
+</body>
+
+
+</html>
