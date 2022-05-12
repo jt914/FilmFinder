@@ -1,0 +1,60 @@
+<!DOCTYPE = html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Thing</title>
+    <link rel="icon" type="image/x-icon" href="/assets/FilmFinder.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src ="app.js"></script>
+
+
+  </head>
+
+
+  <body>
+    <div class="menu-bar">
+      
+      <div class="icon-container">
+        <img class="filmfinder-icon" src="/assets/FilmFinder.png">
+      </div>
+      <div class="title-bar">
+        Film Finder
+      </div>
+
+    </div>
+    <div class="main">
+      <div class="">
+        <label class="radius-label"for="radius">Radius for search, in miles(Max: 30):</label>
+
+        <input id = "radius" max= 30 type="number" min="0">
+      </div>
+      <div>
+        <button id= "start" onclick= "getUserCoords(document.getElementById('radius').value)">Start the service. You will need to enable location services.</button>
+
+
+    
+        <p id= "wasd"></p>
+      </div>
+    </div>
+    <div id="content-main">
+      
+    </div>
+
+    <a href="/austin.html">Click for funny</a>
+
+    <div id="googleMap" style="width:100%;height:400px"></div>
+
+  </body>
+  <footer>
+    <p>A project by Joseph Tso and Austin Cui</p>
+  </footer>
+
+
+</html>
