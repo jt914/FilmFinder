@@ -101,6 +101,7 @@
       }
 
       function getUserCoords(radius) {
+        radius = radius * 1609
           var promise1 = new Promise(function(resolve, reject) {
             navigator.geolocation.getCurrentPosition(function(pos){
                 lat = pos.coords.latitude
@@ -184,9 +185,9 @@
     </div>
     <div class="main">
       <div class="">
-        <label class="radius-label"for="radius">Radius for search(100-50000):</label>
+        <label class="radius-label"for="radius">Radius for search, in miles(Max: 30):</label>
 
-        <input id = "radius" max= 50000 type="number" min="100">
+        <input id = "radius" max= 30 type="number" min="0">
       </div>
       <div>
         <button id= "start" onclick= "getUserCoords(document.getElementById('radius').value)">Start the service. You will need to enable location services.</button>
@@ -202,6 +203,9 @@
     <div id="googleMap" style="width:100%;height:400px"></div>
 
   </body>
+  <footer>
+    <p>A project by Joseph Tso and Austin Cui</p>
+  </footer>
 
 
 </html>
