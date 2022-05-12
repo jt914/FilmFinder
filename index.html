@@ -40,11 +40,10 @@
 
             //parent ul
             let list = document.getElementById("locations");
-
             //initializing a sub ul for each item in the list of movies
             let i = 0;
             data1.forEach((item) => {
-              
+              let name = data1[i].name;
               let li = document.createElement("li");
               try {
                 let headers = new Headers();
@@ -58,19 +57,19 @@
             .then(response => response.json())
             .then(data => {destinationInfo = data;
               console.log(destinationInfo);
+              console.log(name);
               
-              retString = data1[i].name + '<ul>'
+              retString = name + '<ul>'
               + '<li>' + 'Address: ' + destinationInfo.destination_addresses[0] + "</li>"
-              + '<li>' + 'Distance' + destinationInfo.rows[0].elements[0].distance.text+ "</li>"
-              + '<li>' + 'Estimated Travel Time' + destinationInfo.rows[0].elements[0].duration.text + "</li>"
+              + '<li>' + 'Distance: ' + destinationInfo.rows[0].elements[0].distance.text+ "</li>"
+              + '<li>' + 'Estimated Travel Time: ' + destinationInfo.rows[0].elements[0].duration.text + "</li>"
 
               + '</ul>'
              
-
-
+              console.log(retString);
               
               
-              li.innerText = item.retString;
+              li.innerHTML = retString;
               list.appendChild(li);       
               })
               } catch (e) {
