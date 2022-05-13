@@ -58,7 +58,7 @@ function processInfo(data1,latLong){
          &key=AIzaSyCDrxi1blX3JmChSsup4Z8bSd62On_FcFE` */
         
         retString = 
-        `<div class="location-result-${i}" style="text-align: center; font-size:1.25em; padding: 10px;">${name}</div>
+        `<div class="location-result-${i}" style="text-align: center; font-size:1.25em; padding: 10px; background-image: url('https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photo_reference=${data2.photos[0].photo_reference}&key=AIzaSyCDrxi1blX3JmChSsup4Z8bSd62On_FcFE');">${name}</div>
         <div><ul>
         <li>Address: ${destinationInfo.destination_addresses[0]}</li>
         <li>Distance: ${destinationInfo.rows[0].elements[0].distance.text}</li>
