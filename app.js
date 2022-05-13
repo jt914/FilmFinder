@@ -64,7 +64,7 @@ function processInfo(data1,latLong){
         <li>Distance: ${destinationInfo.rows[0].elements[0].distance.text}</li>
         <li>Estimated Travel Time: ${destinationInfo.rows[0].elements[0].duration.text}</li>
         </ul></div>
-        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400?maxheight=400&photo_reference=${data2.photos[0].photo_reference}&key=AIzaSyCDrxi1blX3JmChSsup4Z8bSd62On_FcFE">`
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photo_reference=${data2.photos[0].photo_reference}&key=AIzaSyCDrxi1blX3JmChSsup4Z8bSd62On_FcFE">`
 
         //IMPORTANT: image for background: ${data1[i].photos[0].html_attributions[0]}
         
