@@ -49,7 +49,7 @@ function processInfo(data1,latLong){
         console.log(name);
         
         retString = 
-        `<div class="location-result-${i}">${name}</div>
+        `<div class="location-result-${i}" style="text-align: center; font-size:1.25em; padding: 10px;">${name}</div>
         <div><ul>
         <li>Address: ${destinationInfo.destination_addresses[0]}</li>
         <li>Distance: ${destinationInfo.rows[0].elements[0].distance.text}</li>
