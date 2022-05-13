@@ -51,11 +51,11 @@ function processInfo(data1,latLong){
         // console.log(name);
 
         //PHOTO LINK  HERE: MAKE SURE THERE ARE NO WHITESPACES, YOU CAN CHANGE THE MAX WIDTH AND MAX HEIGHT
-        //`https://maps.googleapis.com/maps/api/place/photo
-        //?maxwidth=400
-        //?maxheight=400
-        // &photo_reference=${data2.photos[0].photo_reference}
-        // &key=AIzaSyCDrxi1blX3JmChSsup4Z8bSd62On_FcFE`
+        /* `https://maps.googleapis.com/maps/api/place/photo
+        ?maxwidth=400
+        ?maxheight=400
+         &photo_reference=${data2.photos[0].photo_reference}
+         &key=AIzaSyCDrxi1blX3JmChSsup4Z8bSd62On_FcFE` */
         
         retString = 
         `<div class="location-result-${i}" style="text-align: center; font-size:1.25em; padding: 10px;">${name}</div>
@@ -63,7 +63,8 @@ function processInfo(data1,latLong){
         <li>Address: ${destinationInfo.destination_addresses[0]}</li>
         <li>Distance: ${destinationInfo.rows[0].elements[0].distance.text}</li>
         <li>Estimated Travel Time: ${destinationInfo.rows[0].elements[0].duration.text}</li>
-        </ul></div>`
+        </ul></div>
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400?maxheight=400&photo_reference=${data2.photos[0].photo_reference}&key=AIzaSyCDrxi1blX3JmChSsup4Z8bSd62On_FcFE">`
 
         //IMPORTANT: image for background: ${data1[i].photos[0].html_attributions[0]}
         
