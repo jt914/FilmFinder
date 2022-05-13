@@ -31,22 +31,31 @@ function processInfo(data1,latLong){
     let list = document.getElementById("content-main");
     //initializing a sub ul for each item in the list of movies
     let i = 0;
+    let data2;
     data1.forEach((item) => {
         let name = data1[i].name;
         let li = document.createElement("div");
         try {
         let headers = new Headers();
         headers.append("origin", null);
-        console.log(data1[i].geometry.location.lat);
-        console.log(data1[i].geometry.location.lng);
+        data2 = data1[i];
+        // console.log(data1[i].geometry.location.lat);
+        // console.log(data1[i].geometry.location.lng);
         fetch(`https://stormy-earth-41391.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${data1[i].geometry.location.lat}, ${data1[i].geometry.location.lng}&origins=${latLong.lat},${latLong.long}&units=imperial&key=AIzaSyCDrxi1blX3JmChSsup4Z8bSd62On_FcFE`,{
             method: 'GET',
             headers: headers
         })
     .then(response => response.json())
     .then(data => {destinationInfo = data;
-        console.log(destinationInfo);
-        console.log(name);
+        // console.log(destinationInfo);
+        // console.log(name);
+
+        //PHOTO LINK  HERE: MAKE SURE THERE ARE NO WHITESPACES, YOU CAN CHANGE THE MAX WIDTH AND MAX HEIGHT
+        //`https://maps.googleapis.com/maps/api/place/photo
+        //?maxwidth=400
+        //?maxheight=400
+        // &photo_reference=${data2.photos[0].photo_reference}
+        // &key=AIzaSyCDrxi1blX3JmChSsup4Z8bSd62On_FcFE`
         
         retString = 
         `<div class="location-result-${i}" style="text-align: center; font-size:1.25em; padding: 10px;">${name}</div>
